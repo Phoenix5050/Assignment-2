@@ -11,10 +11,31 @@ class Smoothie {
         this.createdAt = new Date();
     }
 
+    calculatePrice() {
+        const sizePrices = { small: 4.99, medium: 6.99, large: 8.99 };
+        const basePrice = this.base === 'coconut-water' ? 1.50 : 1.00;
+        const ingredientCost = this.ingredients.length * 0.75;
+        return (sizePrices[this.size] + basePrice + ingredientCost).toFixed(2);
+    }
+
     describe() {
-        return `Your ${this.size} smoothie with ${this.base} base and 
+        return `Your ${this.size} smoothie ($${this.calculatePrice()}) with ${this.base} base and 
                 ${this.ingredients.join(', ')}. Enjoy! 🥤`;
     }
+}
+
+// Save orders to localStorage
+function saveOrder(order) {
+    const orders = JSON.parse(localStorage.getItem('smoothieOrders')) || [];
+    orders.push(order);
+    localStorage.setItem('smoothieOrders', JSON.stringify(orders));
+}
+
+// Display order history
+function displayHistory() {
+    const orders = JSON.parse(localStorage.getItem('smoothieOrders')) || [];
+    const historyHTML = orders.map(order => `<li>${order.description}</li>`).join('');
+    document.getElementById('orderHistory').innerHTML = historyHTML;
 }
 
 // Form Validation Logic/Submission Handler

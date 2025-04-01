@@ -58,3 +58,9 @@ button {
     background-color: #e8f5e9;
     border-radius: 5px;
 }
+
+#orderHistory {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fff9f2;
+}
