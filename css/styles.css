@@ -44,3 +44,17 @@ button {
     cursor: pointer;
     width: 100%;
 }
+
+/* Animations */
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#orderOutput {
+    animation: slideIn 0.5s ease-out;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border-radius: 5px;
+}
