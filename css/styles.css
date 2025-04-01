@@ -64,3 +64,9 @@ button {
     padding: 15px;
     background-color: #fff9f2;
 }
+
+#addCustom {
+    background-color: #ffab40;
+    padding: 8px;
+    margin-top: 10px;
+}

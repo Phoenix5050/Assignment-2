@@ -27,14 +27,20 @@ class Smoothie {
 // Save orders to localStorage
 function saveOrder(order) {
     const orders = JSON.parse(localStorage.getItem('smoothieOrders')) || [];
-    orders.push(order);
+    orders.push({
+        description: order.describe(),  // Store the description string
+        price: order.calculatePrice(),
+        timestamp: new Date().toISOString()
+    });
     localStorage.setItem('smoothieOrders', JSON.stringify(orders));
 }
 
 // Display order history
 function displayHistory() {
     const orders = JSON.parse(localStorage.getItem('smoothieOrders')) || [];
-    const historyHTML = orders.map(order => `<li>${order.description}</li>`).join('');
+    const historyHTML = orders.map(order => 
+        `<li>${order.description}</li>`
+    ).join('');
     document.getElementById('orderHistory').innerHTML = historyHTML;
 }
 
@@ -56,8 +62,25 @@ document.getElementById('smoothieForm').addEventListener('submit', function(e) {
         // Proceed if valid
         const order = new Smoothie(size, base, ingredients);
         document.getElementById('orderOutput').textContent = order.describe();
+        saveOrder(order);
+        displayHistory();
     }
     catch (error) {
         alert(`Error: ${error.message}`);
+    }
+});
+
+document.getElementById('addCustom').addEventListener('click', () => {
+    const customInput = document.getElementById('customIngredient');
+    if (customInput.value.trim()) {
+        const checkbox = document.createElement('div');
+        checkbox.innerHTML = `
+            <label>
+                <input type="checkbox" name="ingredient" value="${customInput.value}">
+                ${customInput.value}
+            </label>
+        `;
+        document.querySelector('.checkbox-group').appendChild(checkbox);
+        customInput.value = '';
     }
 });
