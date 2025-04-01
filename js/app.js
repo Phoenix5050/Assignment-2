@@ -4,6 +4,11 @@
  * @class
  */
 class Smoothie {
+    /**
+     * @param {string} size - small/medium/large
+     * @param {string} base - almond-milk/coconut-water
+     * @param {string[]} ingredients - Array of ingredient names
+     */
     constructor(size, base, ingredients) {
         this.size = size;
         this.base = base;
@@ -11,6 +16,7 @@ class Smoothie {
         this.createdAt = new Date();
     }
 
+    /** Calculate total price based on selections */
     calculatePrice() {
         const sizePrices = { small: 4.99, medium: 6.99, large: 8.99 };
         const basePrice = this.base === 'coconut-water' ? 1.50 : 1.00;
@@ -18,6 +24,7 @@ class Smoothie {
         return (sizePrices[this.size] + basePrice + ingredientCost).toFixed(2);
     }
 
+    /** Generate human-readable description */
     describe() {
         return `Your ${this.size} smoothie ($${this.calculatePrice()}) with ${this.base} base and 
                 ${this.ingredients.join(', ')}. Enjoy! 🥤`;
@@ -70,6 +77,7 @@ document.getElementById('smoothieForm').addEventListener('submit', function(e) {
     }
 });
 
+/* Add custom ingredients */
 document.getElementById('addCustom').addEventListener('click', () => {
     const customInput = document.getElementById('customIngredient');
     if (customInput.value.trim()) {
