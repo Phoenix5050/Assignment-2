@@ -9,4 +9,4 @@ A web app for custom smoothie orders with price calculation and PDF receipts.
 - Responsive design
 
 ## Deployment
-Hosted on GitHub Pages: [https://phoenix5050.github.io/smoothie-machine]
+Hosted on GitHub Pages: [https://phoenix5050.github.io/Assignment-2/]
